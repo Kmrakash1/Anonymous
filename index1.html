@@ -1,0 +1,1052 @@
+<html><head><base href="." /><title>AnonyStudy Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+:root {
+  --primary: #4a90e2;
+  --secondary: #2c3e50;
+  --accent: #e74c3c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f5f6fa;
+}
+
+.navbar {
+  background: white;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.2rem;
+}
+
+.logo-svg {
+  width: 45px;
+  height: 45px;
+  transition: transform 0.3s ease;
+}
+
+.logo-svg:hover {
+  transform: scale(1.1);
+}
+
+.brand-name {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.3s;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  background: rgba(74, 144, 226, 0.1);
+  transform: translateY(2px);
+}
+
+.hero {
+  margin-top: 120px;
+  padding: 3rem 1rem;
+  text-align: center;
+  background: linear-gradient(135deg, #6c5ce7, #a8c0ff);
+  color: white;
+}
+
+.courses {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.course-card {
+  aspect-ratio: 2/3;  
+  min-height: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+.course-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2rem;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+.batch-container {
+  display: none;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(245, 246, 250, 0.98);
+  z-index: 900;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.batch-container.active {
+  display: block;
+}
+
+.batch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.batch-card {
+  aspect-ratio: 2/3;  
+  min-height: 450px;
+  width: 100%;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.batch-card:hover {
+  transform: translateY(-10px);
+}
+
+.thumbnail {
+  position: relative;
+  height: 65%;
+  background: linear-gradient(135deg, #6c5ce7, #a8c0ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.watermark {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.8rem;
+}
+
+.batch-content {
+  height: 35%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.batch-title {
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.study-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: auto;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.study-btn:hover {
+  background: #357abd;
+  transform: scale(1.05);
+}
+
+.thumbnail-icon {
+  width: 80px;
+  height: 80px;
+  fill: white;
+}
+
+.social-links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  transition: all 0.3s;
+  width: 100%;
+  background: #f8f9fa;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.coming-soon {
+  position: relative;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.coming-soon:hover {
+  opacity: 1;
+}
+
+.coming-soon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.coming-soon .batch-content p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  max-height: 500px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chatbot-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chatbot-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: var(--primary);
+  border-radius: 15px 15px 0 0;
+  color: white;
+}
+
+.robot-icon {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.chat-messages {
+  padding: 15px;
+  overflow-y: auto;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 15px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.bot-message {
+  background: #f1f3f4;
+  align-self: flex-start;
+  border-bottom-left-radius: 5px;
+}
+
+.bot-message a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.bot-message a:hover {
+  text-decoration: underline;
+}
+
+.user-message {
+  background: var(--primary);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 5px;
+}
+
+.chat-input {
+  display: flex;
+  padding: 15px;
+  gap: 10px;
+  border-top: 1px solid #eee;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+}
+
+.send-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.send-btn:hover {
+  background: #357abd;
+}
+
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: all 0.3s;
+}
+
+.chat-toggle:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .logo-svg {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .logo-container {
+    gap: 0.5rem;
+  }
+
+  .brand-name {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .nav-link svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .courses {
+    padding: 1rem;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .course-card {
+    min-height: 380px;
+  }
+
+  .batch-grid {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .batch-card {
+    min-height: 480px;
+  }
+
+  .hero {
+    margin-top: 130px;
+    padding: 2rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .social-links-container {
+    padding: 2rem 1rem;
+    margin: 1rem;
+  }
+  
+  .social-link {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .chatbot-container {
+    width: 90%;
+    max-width: 350px;
+    right: 5%;
+    bottom: 80px;
+  }
+  
+  .chat-toggle {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1400px) {
+  .courses, .batch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1401px) {
+  .courses, .batch-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1600px;
+  }
+}
+
+.course-card h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.course-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 0 1rem;
+}
+
+.developer-credit {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+  font-style: italic;
+  background: linear-gradient(135deg, #6c5ce7, #a8c0ff);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.developer-credit span {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.developer-credit span:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.2);
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo-container">
+      <svg class="logo-svg" viewBox="0 0 100 100">
+        <path d="M15 20 L85 20 L85 80 L15 80 C15 80 25 80 25 80 L25 20 C25 20 15 20 15 20" 
+              fill="#4a90e2" 
+              stroke="#2c3e50" 
+              stroke-width="2"/>
+        
+        <path d="M15 20 C15 20 25 20 25 20 L25 80 C25 80 15 80 15 80 L15 20" 
+              fill="#ffffff" 
+              stroke="#2c3e50" 
+              stroke-width="1"/>
+        
+        <path d="M25 20 L85 20 L85 80 L25 80 C45 75 65 75 85 80 L85 20 C65 25 45 25 25 20" 
+              fill="#ffffff" 
+              stroke="#2c3e50" 
+              stroke-width="1"/>
+        
+        <path d="M35 30 L75 30 M35 40 L75 40 M35 50 L75 50 M35 60 L75 60 M35 70 L75 70" 
+              stroke="#2c3e50" 
+              stroke-width="0.5" 
+              fill="none"/>
+        
+        <path d="M60 15 L60 35 L65 30 L70 35 L70 15 Z" 
+              fill="#e74c3c"/>
+      </svg>
+      <span class="brand-name">AnonyStudy Hub</span>
+    </div>
+    <div class="nav-links">
+      <a href="https://anonymousstudy.com/home" class="nav-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 13h1v7c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7h1a1 1 0 0 0 .7-1.7L12 2.7a1 1 0 0 0-1.4 0l-8.3 8.6A1 1 0 0 0 3 13z"/>
+        </svg>
+        Home
+      </a>
+      <a href="https://anonymousstudy.com/batches" class="nav-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+          <path d="M3.27 13.75L12 18l8.73-4.25L12 9.5 3.27 13.75z"/>
+        </svg>
+        Batches
+      </a>
+      <a href="https://anonymousstudy.com/contact" class="nav-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+        </svg>
+        Contact Us
+      </a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Welcome to AnonyStudy Hub</h1>
+    <p>Your Gateway to Academic Excellence</p>
+  </section>
+
+  <section class="courses">
+    <div class="course-card floating">
+      <svg class="course-icon" viewBox="0 0 24 24" fill="#4a90e2">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+      </svg>
+      <h3>Class 10th</h3>
+      <p>Comprehensive preparation for board exams with expert guidance</p>
+    </div>
+
+    <div class="course-card floating">
+      <svg class="course-icon" viewBox="0 0 24 24" fill="#e74c3c">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+      </svg>
+      <h3>Class 11th</h3>
+      <p>Strong foundation for higher studies with focused subject expertise</p>
+    </div>
+
+    <div class="course-card floating">
+      <svg class="course-icon" viewBox="0 0 24 24" fill="#2ecc71">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+      </svg>
+      <h3>Class 12th</h3>
+      <p>Advanced learning for board exams and competitive preparations</p>
+    </div>
+
+    <div class="course-card floating">
+      <svg class="course-icon" viewBox="0 0 24 24" fill="#f1c40f">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+      </svg>
+      <h3>NEET Preparation</h3>
+      <p>Specialized medical entrance exam coaching with mock tests</p>
+    </div>
+
+    <div class="course-card floating">
+      <svg class="course-icon" viewBox="0 0 24 24" fill="#9b59b6">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+      </svg>
+      <h3>JEE Preparation</h3>
+      <p>Intensive engineering entrance coaching with problem-solving focus</p>
+    </div>
+
+    <div class="course-card floating">
+      <svg class="course-icon" viewBox="0 0 24 24" fill="#3498db">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+      </svg>
+      <h3>Other Competitive Exams</h3>
+      <p>Customized coaching for various competitive examinations</p>
+    </div>
+  </section>
+
+  <div id="batchContainer" class="batch-container">
+    <div class="batch-grid">
+      <div class="batch-card">
+        <div class="thumbnail">
+          <svg class="thumbnail-icon" viewBox="0 0 24 24">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M3.27 13.75L12 18l8.73-4.25L12 9.5 3.27 13.75z" fill="currentColor"/>
+          </svg>
+          <div class="watermark">AnonyStudy Hub</div>
+        </div>
+        <div class="batch-content">
+          <h3 class="batch-title">YAKEEN NEET 2.0 2025</h3>
+          <button class="study-btn">LET'S STUDY</button>
+        </div>
+      </div>
+
+      <div class="batch-card">
+        <div class="thumbnail">
+          <svg class="thumbnail-icon" viewBox="0 0 24 24">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M3.27 13.75L12 18l8.73-4.25L12 9.5 3.27 13.75z" fill="currentColor"/>
+          </svg>
+          <div class="watermark">AnonyStudy Hub</div>
+        </div>
+        <div class="batch-content">
+          <h3 class="batch-title">YAKEEN NEET 2025</h3>
+          <button class="study-btn">LET'S STUDY</button>
+        </div>
+      </div>
+
+      <div class="batch-card">
+        <div class="thumbnail">
+          <svg class="thumbnail-icon" viewBox="0 0 24 24">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M3.27 13.75L12 18l8.73-4.25L12 9.5 3.27 13.75z" fill="currentColor"/>
+          </svg>
+          <div class="watermark">AnonyStudy Hub</div>
+        </div>
+        <div class="batch-content">
+          <h3 class="batch-title">LAKSHAY NEET +12 2025</h3>
+          <button class="study-btn">LET'S STUDY</button>
+        </div>
+      </div>
+
+      <div class="batch-card">
+        <div class="thumbnail">
+          <svg class="thumbnail-icon" viewBox="0 0 24 24">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M3.27 13.75L12 18l8.73-4.25L12 9.5 3.27 13.75z" fill="currentColor"/>
+          </svg>
+          <div class="watermark">AnonyStudy Hub</div>
+        </div>
+        <div class="batch-content">
+          <h3 class="batch-title">ARJUNA NEET +11 2025</h3>
+          <button class="study-btn">LET'S STUDY</button>
+        </div>
+      </div>
+
+      <div class="batch-card coming-soon">
+        <div class="thumbnail" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
+          <svg class="thumbnail-icon" style="opacity: 0.5" viewBox="0 0 24 24">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M3.27 13.75L12 18l8.73-4.25L12 9.5 3.27 13.75z" fill="currentColor"/>
+          </svg>
+          <div class="watermark">AnonyStudy Hub</div>
+        </div>
+        <div class="batch-content">
+          <h3 class="batch-title">Coming Soon!</h3>
+          <p style="color: #666; text-align: center;">New batches will be announced shortly. Stay tuned!</p>
+          <div class="coming-soon-badge">Coming Soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contactContainer" class="batch-container">
+    <div class="social-links-container">
+      <a href="https://t.me/teamanonymous07" class="social-link" target="_blank">
+        <svg class="social-icon" viewBox="0 0 24 24" fill="#0088cc">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.44 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.35-.48.96-.74 3.78-1.65 6.31-2.74 7.58-3.27 3.61-1.51 4.36-1.77 4.85-1.78.11 0 .35.03.51.14.13.1.17.23.19.33.02.12.02.24.01.36z"/>
+        </svg>
+        Join us on Telegram
+      </a>
+      <a href="https://www.instagram.com/bhatakash07/" class="social-link" target="_blank">
+        <svg class="social-icon" viewBox="0 0 24 24" fill="#e4405f">
+          <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.509-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"/>
+        </svg>
+        Follow us on Instagram
+      </a>
+    </div>
+  </div>
+
+  <div class="chat-toggle" id="chatToggle">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+    </svg>
+  </div>
+
+  <div class="chatbot-container" id="chatContainer">
+    <div class="chatbot-header">
+      <svg class="robot-icon" viewBox="0 0 24 24" fill="#4a90e2">
+        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h2c1.1 0 2 .9 2 2v2h1a3 3 0 0 1 3 3v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5a3 3 0 0 1 3-3h1V9c0-1.1.9-2 2-2h2V5.72c-.6-.34-1-.98-1-1.72a2 2 0 0 1 2-2M7.5 13A1.5 1.5 0 0 0 6 14.5 1.5 1.5 0 0 0 7.5 16 1.5 1.5 0 0 0 9 14.5 1.5 1.5 0 0 0 7.5 13m9 0a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5M12 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5"/>
+      </svg>
+      <div>
+        <h3>MR.AKASH</h3>
+        <small>AI Assistant</small>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot-message">
+        Hello! I'm MR.AKASH, your AI assistant. How can I help you today?
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button class="send-btn" id="sendMessage">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="developer-credit">
+    <span>DEVELOPED BY AKASH</span>
+  </div>
+
+  <script>
+    document.querySelectorAll('a[href^="https://"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if (!this.hasAttribute('target')) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          if (href === 'https://anonymousstudy.com/home') {
+            const batchContainer = document.getElementById('batchContainer');
+            const contactContainer = document.getElementById('contactContainer');
+            batchContainer.classList.remove('active');
+            contactContainer.classList.remove('active');
+            document.querySelector('.courses').style.display = 'grid';
+            document.querySelector('.hero').style.display = 'block';
+          } else if (href === 'https://anonymousstudy.com/batches') {
+            const batchContainer = document.getElementById('batchContainer');
+            const contactContainer = document.getElementById('contactContainer');
+            batchContainer.classList.add('active');
+            contactContainer.classList.remove('active');
+            document.querySelector('.courses').style.display = 'none';
+            document.querySelector('.hero').style.display = 'none';
+          } else if (href === 'https://anonymousstudy.com/contact') {
+            const batchContainer = document.getElementById('batchContainer');
+            const contactContainer = document.getElementById('contactContainer');
+            contactContainer.classList.add('active');
+            batchContainer.classList.remove('active');
+            document.querySelector('.courses').style.display = 'none';
+            document.querySelector('.hero').style.display = 'none';
+          }
+        }
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.course-card').forEach(card => {
+      observer.observe(card);
+    });
+
+    document.querySelectorAll('.study-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const batchTitle = this.parentElement.querySelector('.batch-title').textContent;
+        let redirectUrl = '';
+        
+        // Set redirect URL based on batch title
+        if (batchTitle === 'YAKEEN NEET 2.0 2025') {
+          redirectUrl = 'https://testfile.eu.org/batch-details/65ddb1c46914ab001880f19a';
+        } else if (batchTitle === 'YAKEEN NEET 2025') {
+          redirectUrl = 'https://testfile.eu.org/batch-details/65d7711b0de2ba001844bbab';
+        } else if (batchTitle === 'LAKSHAY NEET +12 2025') {
+          redirectUrl = 'https://testfile.eu.org/batch-details/65d75d320531c20018ade9bb';
+        } else if (batchTitle === 'ARJUNA NEET +11 2025') {
+          redirectUrl = 'https://testfile.eu.org/batch-details/65d749530531c20018ad953b';
+        }
+        
+        // Redirect to the appropriate URL
+        if (redirectUrl) {
+          window.location.href = redirectUrl;
+        }
+      });
+    });
+
+    const chatToggle = document.getElementById('chatToggle');
+    const chatContainer = document.getElementById('chatContainer');
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+    const sendMessage = document.getElementById('sendMessage');
+
+    chatToggle.addEventListener('click', () => {
+      chatContainer.classList.toggle('active');
+    });
+
+    function addMessage(message, isBot = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isBot ? 'bot-message' : 'user-message'}`;
+      
+      message = message.replace(/\n/g, '<br>');
+      message = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      message = message.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      
+      messageDiv.innerHTML = message;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function getBotResponse(message) {
+      const responses = {
+        'hello': 'Hi! I\'m MR.AKASH. How can I assist you with your studies today?',
+        'hi': 'Hello! I\'m here to help you with any questions about our courses.',
+        
+        'courses': 'We offer comprehensive courses for:\n- Class 10th Board Prep\n- Class 11th Foundation\n- Class 12th Board Prep\n- NEET Preparation\n- JEE Preparation\n- Other Competitive Exams',
+        'class': 'We provide dedicated classes for 10th, 11th, and 12th standards with expert faculty and comprehensive study materials.',
+        
+        'neet': 'For NEET preparation, we offer two specialized batches:\n1. YAKEEN NEET 2.0 2025\n2. YAKEEN NEET 2025\nBoth include comprehensive study materials, regular tests, and expert guidance.',
+        'medical': 'Our NEET preparation program is designed to help you achieve your medical dreams. Would you like to know about our YAKEEN batches?',
+        
+        'jee': 'Our JEE preparation program includes complete coverage of Physics, Chemistry, and Mathematics with regular practice tests and doubt clearing sessions.',
+        'engineering': 'For engineering aspirants, we offer specialized JEE preparation with focus on concept building and problem-solving techniques.',
+        
+        'batch': 'Currently we have four active batches:\n1. YAKEEN NEET 2.0 2025\n2. YAKEEN NEET 2025\n3. LAKSHAY NEET +12 2025\n4. ARJUNA NEET +11 2025\nMore batches coming soon!',
+        'yakeen': 'YAKEEN is our flagship NEET preparation program. We have two variants:\n1. YAKEEN NEET 2.0 2025\n2. YAKEEN NEET 2025',
+        'lakshay': 'LAKSHAY NEET +12 2025 is our specialized program for Class 12 students preparing for NEET.',
+        'arjuna': 'ARJUNA NEET +11 2025 is our comprehensive program for Class 11 students starting their NEET preparation journey.',
+        
+        'contact': 'You can reach us through:\n- Telegram: @teamanonymous07\n- Instagram: @bhatakash07',
+        'fees': 'For detailed fee structure and current offers, please contact us through Telegram (@teamanonymous07) or Instagram (@bhatakash07).',
+        'admission': 'For admission process and enrollment, please reach out to us on Telegram (@teamanonymous07).',
+        
+        'default': 'I\'m here to help! Please ask about our courses, batches, or contact information.'
+      };
+
+      const lcMessage = message.toLowerCase();
+      let response = responses.default;
+      
+      for (let key in responses) {
+        if (lcMessage.includes(key)) {
+          response = responses[key];
+          break;
+        }
+      }
+
+      if (lcMessage.includes('thank')) {
+        response = "You're welcome! Let me know if you need anything else.";
+      } else if (lcMessage.includes('bye')) {
+        response = "Goodbye! Feel free to come back if you have more questions.";
+      }
+
+      return new Promise(resolve => {
+        setTimeout(() => resolve(response), 800);
+      });
+    }
+
+    async function handleUserMessage() {
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      addMessage(message, false);
+      userInput.value = '';
+
+      const response = await getBotResponse(message);
+      addMessage(response, true);
+    }
+
+    sendMessage.addEventListener('click', handleUserMessage);
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        handleUserMessage();
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      const batchContainer = document.getElementById('batchContainer');
+      const contactContainer = document.getElementById('contactContainer');
+      if (e.target === batchContainer) {
+        batchContainer.classList.remove('active');
+        document.querySelector('.courses').style.display = 'grid';
+        document.querySelector('.hero').style.display = 'block';
+      } else if (e.target === contactContainer) {
+        contactContainer.classList.remove('active');
+        document.querySelector('.courses').style.display = 'grid';
+        document.querySelector('.hero').style.display = 'block';
+      }
+    });
+
+    function updateChatbotHeader() {
+      const header = document.querySelector('.chatbot-header');
+      const clearBtn = document.createElement('button');
+      clearBtn.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      `;
+      clearBtn.style.cssText = `
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        margin-left: auto;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background 0.3s;
+      `;
+      clearBtn.addEventListener('mouseover', () => {
+        clearBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+      });
+      clearBtn.addEventListener('mouseout', () => {
+        clearBtn.style.background = 'none';
+      });
+      clearBtn.addEventListener('click', clearChat);
+      header.appendChild(clearBtn);
+    }
+
+    function clearChat() {
+      const chatMessages = document.getElementById('chatMessages');
+      chatMessages.innerHTML = '';
+      addMessage('Hello! I\'m MR.AKASH, your AI assistant. How can I help you today?', true);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateChatbotHeader();
+    });
+  </script>
+</body></html>
